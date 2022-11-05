@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycode.mapper.CourseMapper">
+
+    <resultMap id="BaseResultMap" type="com.mycode.domain.Course">
+            <id property="id" column="id" jdbcType="OTHER"/>
+            <result property="courseName" column="course_name" jdbcType="VARCHAR"/>
+            <result property="brief" column="brief" jdbcType="VARCHAR"/>
+            <result property="price" column="price" jdbcType="DOUBLE"/>
+            <result property="priceTag" column="price_tag" jdbcType="VARCHAR"/>
+            <result property="discounts" column="discounts" jdbcType="DOUBLE"/>
+            <result property="discountsTag" column="discounts_tag" jdbcType="VARCHAR"/>
+            <result property="courseDescriptionMarkDown" column="course_description_mark_down" jdbcType="VARCHAR"/>
+            <result property="courseDescription" column="course_description" jdbcType="VARCHAR"/>
+            <result property="courseImgUrl" column="course_img_url" jdbcType="VARCHAR"/>
+            <result property="isNew" column="is_new" jdbcType="TINYINT"/>
+            <result property="isNewDes" column="is_new_des" jdbcType="VARCHAR"/>
+            <result property="lastOperatorId" column="last_operator_id" jdbcType="INTEGER"/>
+            <result property="autoOnlineTime" column="auto_online_time" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="isDel" column="is_del" jdbcType="TINYINT"/>
+            <result property="totalDuration" column="total_duration" jdbcType="INTEGER"/>
+            <result property="courseListImg" column="course_list_img" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="sortNum" column="sort_num" jdbcType="INTEGER"/>
+            <result property="previewFirstField" column="preview_first_field" jdbcType="VARCHAR"/>
+            <result property="previewSecondField" column="preview_second_field" jdbcType="VARCHAR"/>
+            <result property="sales" column="sales" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,course_name,brief,
+        price,price_tag,discounts,
+        discounts_tag,course_description_mark_down,course_description,
+        course_img_url,is_new,is_new_des,
+        last_operator_id,auto_online_time,create_time,
+        update_time,is_del,total_duration,
+        course_list_img,status,sort_num,
+        preview_first_field,preview_second_field,sales
+    </sql>
+    <select id="findAllCourse" resultMap="BaseResultMap">
+        select * from course
+<where>
+    <if test="courseName != null and courseName != ''">
+        and course_name like concat('%',#{courseName},'%')
+    </if>
+<if test="status != null">
+    and status=#{status}
+</if>
+</where>
+    </select>
+</mapper>

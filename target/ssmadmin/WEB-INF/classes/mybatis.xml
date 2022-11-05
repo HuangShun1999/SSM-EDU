@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--    配置log4j作为日志的实现-->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+    <!--    为指定包中的所有类取别名-->
+    <typeAliases>
+        <package name="com.mycode.domain"/>
+    </typeAliases>
+
+    <!--    配置pageHelper分页插件-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="pageSizeZero" value="ture"/>
+            <property name="reasonable" value="true"/>
+        </plugin>
+        
+    </plugins>
+
+    <!--    扫描指定的映射配置文件-->
+    <mappers>
+        <mapper resource="mapper/CourseMapper.xml"/>
+        <mapper resource="mapper/CourseLessonMapper.xml"/>
+        <mapper resource="mapper/CourseSectionMapper.xml"/>
+        <mapper resource="mapper/UserMapper.xml"/>
+    </mappers>
+</configuration>
